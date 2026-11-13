@@ -17,7 +17,7 @@ function updateProgress() {
   const todayCompleted = state.completed.filter(id => id.startsWith(todayPrefix));
   const done = Math.min(todayCompleted.length, 4);
   const percent = Math.round(done / 4 * 100);
-  document.querySelector('#progress-ring').style.background = `conic-gradient(#8272d7 ${percent * 3.6}deg,#f0eff4 ${percent * 3.6}deg)`;
+  document.querySelector('#progress-ring').style.background = `conic-gradient(#31805a ${percent * 3.6}deg,#e7efe8 ${percent * 3.6}deg)`;
   document.querySelector('#progress-percent').textContent = `${percent}%`;
   document.querySelector('#progress-done').textContent = `${done} / 4`;
   document.querySelector('#progress-left').textContent = `${4 - done}개`;
@@ -267,6 +267,6 @@ window.addEventListener('beforeinstallprompt', event => {
 window.addEventListener('appinstalled', () => installButton.classList.add('hidden'));
 
 if ('serviceWorker' in navigator && (location.protocol === 'https:' || ['localhost', '127.0.0.1'].includes(location.hostname))) {
-  window.addEventListener('load', () => navigator.serviceWorker.register(new URL('sw.js', location.href)).catch(error => console.warn('Offline support could not be enabled.', error)));
+  window.addEventListener('load', () => navigator.serviceWorker.register(new URL('sw.js', location.href)).then(registration => registration.update()).catch(error => console.warn('Offline support could not be enabled.', error)));
 }
 updateProgress();

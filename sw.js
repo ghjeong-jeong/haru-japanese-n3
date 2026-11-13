@@ -1,4 +1,4 @@
-const CACHE_NAME = 'haru-n3-shell-v5';
+const CACHE_NAME = 'haru-n3-shell-v6';
 const BASE_PATH = new URL('.', self.location.href).pathname;
 const APP_SHELL = [
   BASE_PATH,
