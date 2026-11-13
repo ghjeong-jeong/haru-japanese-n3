@@ -1,4 +1,4 @@
-const CACHE_NAME = 'haru-n3-shell-v3';
+const CACHE_NAME = 'haru-n3-shell-v5';
 const BASE_PATH = new URL('.', self.location.href).pathname;
 const APP_SHELL = [
   BASE_PATH,
@@ -9,6 +9,9 @@ const APP_SHELL = [
   BASE_PATH + 'curriculum.js',
   BASE_PATH + 'manifest.webmanifest',
   BASE_PATH + 'icons/icon.svg',
+  BASE_PATH + 'icons/icon-192.png',
+  BASE_PATH + 'icons/icon-512.png',
+  BASE_PATH + 'icons/apple-touch-icon.png',
 ];
 
 self.addEventListener('install', event => {

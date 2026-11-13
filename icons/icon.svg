@@ -1,12 +1,19 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#9385e5" />
-      <stop offset="1" stop-color="#7060c6" />
+      <stop offset="0" stop-color="#2d805b" />
+      <stop offset="1" stop-color="#16523c" />
     </linearGradient>
   </defs>
-  <rect width="512" height="512" rx="112" fill="url(#bg)" />
-  <circle cx="378" cy="126" r="76" fill="#fff" opacity=".1" />
-  <rect x="166" y="112" width="180" height="288" rx="25" fill="none" stroke="#fff" stroke-width="27" />
-  <path d="M181 256h150" fill="none" stroke="#fff" stroke-width="25" stroke-linecap="round" />
+  <rect width="512" height="512" fill="url(#bg)" />
+  <rect x="61" y="52" width="390" height="410" rx="55" fill="#faf8ea" />
+  <circle cx="256" cy="145" r="28" fill="#e59f53" />
+  <g fill="none" stroke="#24694b" stroke-width="13" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M164 190c30-35 65-36 92-6 27-30 62-29 92 6M164 190v49m184-49v49m-92-55v58" />
+  </g>
+  <g fill="#236045" font-family="Noto Sans KR, Malgun Gothic, sans-serif" font-weight="700" text-anchor="middle">
+    <text x="256" y="306" font-size="60">근짱</text>
+    <text x="256" y="374" font-size="54">일본어</text>
+  </g>
+  <circle cx="256" cy="422" r="12" fill="#e59f53" />
 </svg>
