@@ -1,4 +1,4 @@
-const CACHE_NAME = 'haru-n3-shell-v1';
+const CACHE_NAME = 'haru-n3-shell-v3';
 const BASE_PATH = new URL('.', self.location.href).pathname;
 const APP_SHELL = [
   BASE_PATH,
@@ -6,6 +6,7 @@ const APP_SHELL = [
   BASE_PATH + 'styles.css',
   BASE_PATH + 'n3.css',
   BASE_PATH + 'app.js',
+  BASE_PATH + 'curriculum.js',
   BASE_PATH + 'manifest.webmanifest',
   BASE_PATH + 'icons/icon.svg',
 ];

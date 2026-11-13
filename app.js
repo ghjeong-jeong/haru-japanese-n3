@@ -1,29 +1,6 @@
-const kanji = [
-  { char: '予', meaning: '미리 예', reading: 'ヨ', words: '予定（よてい）계획 · 予約（よやく）예약 · 予算（よさん）예산', example: '来週の予定を確認します。', hint: '予는 미리 생각해 두는 모습. 予定·予約처럼 “미리 정함”을 떠올려요.' },
-  { char: '定', meaning: '정할 정', reading: 'テイ・さだ(める)', words: '決定（けってい）결정 · 安定（あんてい）안정 · 定休日（ていきゅうび）정기 휴일', example: '集合時間を決めておきましょう。', hint: '定은 정해진 자리에 머무는 지붕 모양으로 연상해요. 予定의 定도 “정하다”.' },
-  { char: '変', meaning: '변할 변', reading: 'ヘン・か(わる)', words: '変更（へんこう）변경 · 大変（たいへん）큰일/힘듦 · 変化（へんか）변화', example: '予定が変わったら連絡してください。', hint: '모양이 달라지면 変化, 내용을 바꾸면 変更. “변할 변”을 중심으로 묶어요.' },
-  { char: '連', meaning: '이을 련', reading: 'レン・つ(れる)', words: '連絡（れんらく）연락 · 連休（れんきゅう）연휴 · 連れて行く（つれていく）데리고 가다', example: '遅れる場合は、先に連絡します。', hint: '連絡은 소식을 이어 전하는 것. “연결해서 알린다”로 기억해요.' },
-  { char: '間', meaning: '사이 간', reading: 'カン・あいだ・ま', words: '時間（じかん）시간 · 間に合う（まにあう）시간에 대다 · しばらくの間（あいだ）잠시 동안', example: '急げば、電車に間に合います。', hint: '시간의 틈에 딱 들어가면 間に合う. 기차 출발 전에 도착하는 장면을 떠올려요.' },
-];
-const words = [
-  { jp: '予定', read: 'よてい · 요테이', ko: '예정, 계획', example: '週末の予定はもう決まりましたか。', translation: '주말 계획은 벌써 정해졌어요?', mnemonic: '予(미리) + 定(정함) = 미리 정해 둔 일정.' },
-  { jp: '変更', read: 'へんこう · 헨코-', ko: '변경', example: '会議の時間が変更になりました。', translation: '회의 시간이 변경됐어요.', mnemonic: '変(변하다) + 更(고치다) = 내용을 바꾸어 고침.' },
-  { jp: '間に合う', read: 'まにあう · 마니아우', ko: '시간에 대다, 늦지 않다', example: '急げば、最終電車に間に合います。', translation: '서두르면 막차 시간에 맞출 수 있어요.', mnemonic: '시간의 間(틈)에 딱 맞게 들어가다 → 늦지 않다.' },
-  { jp: '連絡', read: 'れんらく · 렌라쿠', ko: '연락', example: '着いたら、私に連絡してください。', translation: '도착하면 저에게 연락해 주세요.', mnemonic: '이어(連)서 소식을 알림(絡) → 연락.' },
-  { jp: '都合', read: 'つごう · 츠고-', ko: '형편, 사정, 시간 괜찮음', example: '来週の水曜日はご都合いかがですか。', translation: '다음 주 수요일은 시간 괜찮으세요?', mnemonic: '都合은 일정·사정이 서로 맞는지 묻는 말. 약속 잡을 때 자주 써요.' },
-];
-const expressions = [
-  { jp: '予定を立てる', read: 'よていをたてる', ko: '계획을 세우다', example: '旅行の予定を立てています。', translation: '여행 계획을 세우고 있어요.', tip: '予定에는 보통 立てる(세우다)를 써요. “계획을 만들다”라는 자연스러운 짝입니다.', change: '週末の予定を立てています。 → 주말 계획을 세우고 있어요.' },
-  { jp: '間に合わない', read: 'まにあわない', ko: '시간에 못 맞추다', example: '今出ないと、電車に間に合わないよ。', translation: '지금 안 나가면 전철 시간에 못 맞춰.', tip: '間に合う의 부정형. 교통편·마감 시간 등 정해진 시각에 늦는 상황에서 써요.', change: '宿題の提出に間に合わなかった。 → 숙제 제출 시간에 못 맞췄어요.' },
-  { jp: '〜ことにする', read: '〜ことにする', ko: '∼하기로 하다 (자신이 결정)', example: '毎日、寝る前に単語を復習することにしました。', translation: '매일 자기 전에 단어를 복습하기로 했어요.', tip: '내가 결심하거나 선택한 결정에 써요. 결정된 규칙·상황은 ことになる와 구분해요.', change: '週末は家で勉強することにします。 → 주말에는 집에서 공부하기로 할게요.' },
-  { jp: '〜ようにする', read: '〜ようにする', ko: '∼하도록 하다, 노력하다', example: '忘れないように、手帳に書くようにしています。', translation: '잊지 않도록 수첩에 적으려고 하고 있어요.', tip: '한 번의 결정보다 습관적으로 노력하는 뉘앙스예요.', change: 'できるだけ日本語で話すようにしています。 → 되도록 일본어로 말하려고 해요.' },
-];
-const quizQuestions = [
-  { prompt: '電車に（　）ように、早く家を出た。', subtitle: '문맥에 맞는 표현을 고르세요.', answer: '間に合う', options: ['間に合う', '変更する', '連絡する', '予定する'] },
-  { prompt: '会議の時間が（　）になりました。', subtitle: '“변경”을 나타내는 말은?', answer: '変更', options: ['経験', '変更', '連休', '都合'] },
-  { prompt: '毎日復習する（　）しました。', subtitle: '“복습하기로 했어요”에 알맞은 표현은?', answer: 'ことに', options: ['ようで', 'ために', 'ことに', 'ところで'] },
-  { prompt: '着いたら、私に（　）してください。', subtitle: '“연락해 주세요”에 알맞은 말은?', answer: '連絡', options: ['予約', '連絡', '変更', '準備'] },
-];
+const selectedDay=Math.min(14,Math.max(1,Number(localStorage.getItem('haru-current-day')||1)));
+const lesson=window.N3_LESSONS[selectedDay-1];
+const kanji=lesson.kanji, words=lesson.words, expressions=lesson.expressions, quizQuestions=lesson.quiz;
 
 const defaultState = { completed: [], quizBest: 0, lastStudy: null, streak: 0 };
 let state;
@@ -36,18 +13,22 @@ const today = new Date();
 document.querySelector('#today-date').textContent = new Intl.DateTimeFormat('ko-KR', { month: 'long', day: 'numeric', weekday: 'short' }).format(today);
 
 function updateProgress() {
-  const done = Math.min(state.completed.length, 4);
+  const todayPrefix = "D"+selectedDay+":";
+  const todayCompleted = state.completed.filter(id => id.startsWith(todayPrefix));
+  const done = Math.min(todayCompleted.length, 4);
   const percent = Math.round(done / 4 * 100);
   document.querySelector('#progress-ring').style.background = `conic-gradient(#8272d7 ${percent * 3.6}deg,#f0eff4 ${percent * 3.6}deg)`;
   document.querySelector('#progress-percent').textContent = `${percent}%`;
   document.querySelector('#progress-done').textContent = `${done} / 4`;
   document.querySelector('#progress-left').textContent = `${4 - done}개`;
-  document.querySelector('#total-count').textContent = `${done}개`;
+  document.querySelector('#total-count').textContent = `${state.completed.length}개`;
+  document.querySelector('#course-completed').textContent = new Set(state.completed.map(id => id.split(':')[0])).size;
   document.querySelector('#streak-count').textContent = `${state.streak}일`;
-  document.querySelector('#kana-task').innerHTML = state.completed.includes('kanji') ? '완료 <b>✓</b>' : '시작하기 <b>→</b>';
+  document.querySelector('#kana-task').innerHTML = todayCompleted.includes(`${todayPrefix}kanji`) ? '완료 <b>✓</b>' : '시작하기 <b>→</b>';
 }
 function complete(id) {
-  if (!state.completed.includes(id)) state.completed.push(id);
+  const scopedId = `D${selectedDay}:${id}`;
+  if (!state.completed.includes(scopedId)) state.completed.push(scopedId);
   const date = new Date().toISOString().slice(0, 10);
   if (state.lastStudy !== date) {
     const yesterday = new Date(Date.now() - 86400000).toISOString().slice(0, 10);
@@ -56,18 +37,23 @@ function complete(id) {
   }
   save(); updateProgress();
 }
-const pageNames = { home: '오늘의 학습', kanji: 'N3 한자', words: 'N3 어휘', expressions: '문장·표현', quiz: '실전 퀴즈', music: 'J-pop 듣기' };
+const pageNames = { course: '14일 학습 코스', home: '오늘의 학습', kanji: 'N3 한자', words: 'N3 어휘', expressions: '문장·표현', quiz: '실전 퀴즈', music: 'J-pop 듣기' };
 function go(page) {
   document.querySelectorAll('.page').forEach(el => el.classList.remove('active-page'));
   document.querySelector(`#page-${page}`).classList.add('active-page');
   document.querySelectorAll('.nav-item').forEach(el => el.classList.toggle('active', el.dataset.page === page));
   document.querySelector('#crumb-title').textContent = pageNames[page];
   if (page === 'quiz') startQuiz();
+  if (page === 'course') renderCourse();
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 document.querySelectorAll('[data-page]').forEach(el => el.addEventListener('click', () => go(el.dataset.page)));
 document.querySelectorAll('[data-go]').forEach(el => el.addEventListener('click', () => go(el.dataset.go)));
+function renderCourse(){const grid=document.querySelector('#course-grid');grid.replaceChildren();window.N3_LESSONS.forEach((item,index)=>{const day=index+1,card=document.createElement('button');const done=['kanji','words','expressions','quiz'].every(id=>state.completed.includes('D'+day+':'+id));card.className='course-day-card'+(day===selectedDay?' current':'')+(done?' done':'');card.innerHTML='<span class="course-day-number">DAY '+String(day).padStart(2,'0')+'</span><strong>'+item.title+'</strong><span class="course-day-focus">'+item.focus+'</span><small>'+item.kanji.length+' 한자 · '+item.words.length+' 어휘 · '+item.expressions.length+' 표현</small><span class="course-day-status">'+(done?'완료 ✓':day===selectedDay?'학습 중':'시작 →')+'</span>';card.addEventListener('click',()=>{localStorage.setItem('haru-current-day',String(day));location.reload()});grid.append(card)})}
+function updateLessonLabels(){document.querySelector('.lesson-tag').innerHTML="TODAY'S N3 LESSON <span>"+String(selectedDay).padStart(2,'0')+'</span>';document.querySelector('.hero-copy h2').textContent=lesson.focus.split(' · ')[0];document.querySelector('.hero-copy p').innerHTML=lesson.focus+'<br />'+lesson.summary;document.querySelector('#kanji-title').textContent=lesson.title+'의 한자';document.querySelector('#kanji-count').textContent='N3 어휘 · '+lesson.kanji.length+'자';document.querySelector('#kanji-focus').textContent=lesson.kanji.map(x=>x.char).join(' · ');document.querySelector('#kanji-summary').innerHTML=lesson.summary+'에 자주 쓰는 한자예요.<br />카드를 눌러 읽기와 암기 힌트를 확인하세요.';document.querySelector('#page-words h1').textContent=lesson.title+' 어휘';document.querySelector('#page-words .lesson-chip').textContent='오늘의 어휘 '+lesson.words.length+'개';document.querySelector('#page-expressions .lesson-chip').textContent='표현 '+lesson.expressions.length+'개 · 바꿔 말하기'}
 
+
+updateLessonLabels();renderCourse();
 const kanjiGrid = document.querySelector('#kana-grid');
 kanji.forEach(item => {
   const card = document.createElement('button');
